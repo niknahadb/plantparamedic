@@ -30,3 +30,7 @@ all: $(HTMLS)
 .PHONY: clean
 clean:
 	rm $(HTMLS)
+
+.PHONY: serve
+serve: all
+	python -m http.server

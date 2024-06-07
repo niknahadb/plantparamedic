@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Kushagra Tiwari and Shengmin Liu (website template by Ryan Tsang)" />
-  <title>NutriSense: Automated Hydroponics Dosing System</title>
+  <meta name="author" content="Borna Niknahad and Pranav Nallapaneni (website template by Ryan Tsang)" />
+  <title>The Plant Paramedic: An Automated Watering System</title>
   <!-- <link rel="stylesheet" type="text/css" href="assets/github-markdown-light.css" /> -->
   <link rel="stylesheet" href="assets/github-markdown-light.css" />
   <link rel="stylesheet" href="assets/style-customization.css" />
@@ -15,79 +15,42 @@
 </head>
 <article class="markdown-body">
 <header id="title-block-header">
-<h1 class="title">NutriSense: Automated Hydroponics Dosing System</h1>
-<p class="subtitle"><blockquote><b>EEC172 Final Project Webpage Example</b><br/> Note to current students: this is an <i>example</i> webpage and may not fulfill all stated requirements of the current quarter's assignment.<br/>The website source is hosted <a href="https://github.com/ucd-eec172/project-website-example">on github</a>. </blockquote></p>
-<p class="author"><strong>Kushagra Tiwari and Shengmin Liu</strong>
+<h1 class="title">The Plant Paramedic: An Automated Watering System</h1>
+<p class="author"><strong>Borna Niknahad and Pranav Nallapaneni</strong>
 (website template by Ryan Tsang)</p>
-<p class="date"><em>EEC172 WQ24</em></p>
+<p class="date"><em>EEC172 SQ24</em></p>
 <div class="abstract">
 <div class="abstract-title"><h2>Description</h2></div>
-Hydroponics is a technique where plants are grown in a nutrient-rich
-solution. This soil- free technique has been gaining traction recently
-due to its ability to optimize resource utilization. However, since
-plants are highly sensitive to changes in TDS, hydroponic setups require
-continuous TDS monitoring and adjustment. NutriSense, our device, allows
-hobbyists to achieve ideal hydroponics results on a small scale. It
-continuously monitors TDS and temperature, allowing the user to remotely
-read the status over AWS IoT cloud. The user can remotely enter upper
-and lower thresholds for TDS, and the device will automatically add
-nutrient solution or water to keep the TDS bounded by the thresholds.
-The device can also be configured to send notifications over SNS when
-the TDS value goes outside thresholds. <br/><br/> Our source code can be
-found <!-- replace this link -->
-<a href="https://github.com/ucd-eec172/project-website-example"> here
-(placeholder)</a>.<br />
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_001.jpg" style="width:auto;height:2in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/Image_002.jpg" style="width:auto;height:2in" /> <!-- <span class="caption"> </span> --> </div> </div>
-<h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/wSRtnAEZhmc?si=3vQXNj4h0WkW-F-q" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div> 
+Our product, named the Plant Paramedic, is an automated plant irrigation
+system that ensures soil moisture levels are maintained at optimal
+levels for ideal plant health. Our product also allows the user to
+manually water their plants and receive an email with the moisture level
+and a timestamp every time the system stops watering. The soil moisture
+sensor reads the values from the soil, which are then sent to the CC3200
+using GPIO input. These values are compared against the threshold values
+in our code to determine whether the soil is dry or wet, and that
+dictates the motor turning on and off. We also set up the IR receiver
+for manual control via the AT&amp;T remote. Finally, AWS IoT notifies
+the user via email about the current status of the system. All of these
+features combined provide the user with an intuitive automated product
+that is simple, smooth, and reliable.<br />
+<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./media/IMG_5995.jpg" style="width:4in;height:5in;"/> <!-- <span class="caption"> </span> --> </div> </div>
+<h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/wSRtnAEZhmc?si=3vQXNj4h0WkW-F-q" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div>
 </div>
 </header>
 <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">Table of Contents</h2>
 <ul>
-<li><a href="#market-survey" id="toc-market-survey">Market
-Survey</a></li>
 <li><a href="#design" id="toc-design">Design</a>
 <ul>
-<li><a href="#system-architecture" id="toc-system-architecture">System
-Architecture</a></li>
 <li><a href="#functional-specification"
 id="toc-functional-specification">Functional Specification</a></li>
+<li><a href="#system-architecture" id="toc-system-architecture">System
+Architecture</a></li>
 </ul></li>
-<li><a href="#implementation" id="toc-implementation">Implementation</a>
-<ul>
-<li><a href="#cc3200-launchxl-evaluation-board"
-id="toc-cc3200-launchxl-evaluation-board">CC3200-LAUNCHXL Evaluation
-Board</a></li>
-<li><a href="#functional-blocks-master"
-id="toc-functional-blocks-master">Functional Blocks: Master</a>
-<ul>
-<li><a href="#aws-iot-core" id="toc-aws-iot-core">AWS IoT Core</a></li>
-<li><a href="#oled-display" id="toc-oled-display">OLED Display</a></li>
-<li><a href="#ir-receiver" id="toc-ir-receiver">IR Receiver</a></li>
-</ul></li>
-<li><a href="#functional-blocks-slave"
-id="toc-functional-blocks-slave">Functional Blocks: Slave</a>
-<ul>
-<li><a href="#analog-to-digital-converter-adc-board"
-id="toc-analog-to-digital-converter-adc-board">Analog-To-Digital
-Converter (ADC) Board</a></li>
-<li><a href="#thermistor" id="toc-thermistor">Thermistor</a></li>
-<li><a href="#tds-sensor-board" id="toc-tds-sensor-board">TDS Sensor
-Board</a></li>
-<li><a href="#pumps-and-control-circuit"
-id="toc-pumps-and-control-circuit">Pumps and Control Circuit</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#challenges" id="toc-challenges">Challenges</a>
-<ul>
-<li><a href="#probe-channel-polarization"
-id="toc-probe-channel-polarization">Probe Channel Polarization</a></li>
-<li><a href="#current-limitation-of-gpio-pins"
-id="toc-current-limitation-of-gpio-pins">Current Limitation of GPIO
-Pins</a></li>
-<li><a href="#solution-to-challenges"
-id="toc-solution-to-challenges">Solution to Challenges</a></li>
-</ul></li>
+<li><a href="#implementation"
+id="toc-implementation">Implementation</a></li>
+<li><a href="#challenges" id="toc-challenges">Challenges</a></li>
 <li><a href="#future-work" id="toc-future-work">Future Work</a></li>
 <li><a href="#finalized-bom" id="toc-finalized-bom">Finalized
 BOM</a></li>
@@ -97,493 +60,234 @@ BOM</a></li>
 
 <!-- ALL CONTENT THAT FOLLWOWS WILL APPEAR IN AND AFTER THE TABLE OF CONTENTS -->
 
-<h1 id="market-survey">Market Survey</h1>
-<p>There are two types of similar product on the market. The first one
-is products from AeroGarden. Their products allow users to grow plants
-in nutrient solutions in a limited amount of usually 5 to 10. Compared
-with this product, our product provides an automated system for nutrient
-control that ensures the plant always has the correct amount of
-nutrients needed to avoid excess or insufficient nutrients. The other
-product is an expensive commercial system for horticulture aiming for a
-large scale of growth. Compared with this one, our product has the
-advantage of being cheap and small-scale which is more suitable for
-individual hobbyists to explore hydroponics.</p>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_003.jpg" style="width:auto;height:200"/>
-    <span class="caption">
-      <a href="https://aerogarden.com/gardens/harvest-family/Harvest-2.0.html">AeroGarden Harvest 2.0</a>
-      <ul style="text-align:left;">
-      <li>Inexpensive ($90)</li>
-      <li>Not Automated</li>
-      <li>Small Scale</li>
-      <li>No remote monitoring</li>
-    </ul>
-    </span>
-  </div>
-  <div style='display: inline-block; vertical-align: top;'>
-    <img src="./media/Image_004.jpg" style="width:auto;height:200" />
-    <span class="caption">
-      <a href="https://www.hydroexperts.com.au/Autogrow-MultiGrow-Controller-All-In-One-Controller-8-Growing-Zones">Autogrow Multigrow</a>
-      <ul style="text-align:left;">
-      <li>Expensive ($4500)</li>
-      <li>Fully Automated</li>
-      <li>Huge Scale</li>
-      <li>Cloud monitoring</li>
-    </ul>
-    </span>
-  </div>
-</div>
-
 <h1 id="design">Design</h1>
-<h2 id="system-architecture">System Architecture</h2>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
-  <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
-    As shown in the system flowchart, we use one of the CC3200 boards for
-    the closed feedback loop for maintaining concentration in the
-    environment. The board will read values with I2C protocol through an ADC
-    which reads values from the thermistor and the TDS meter sensor. The
-    board will also periodically read user-defined thresholds from the AWS
-    cloud using RESTful APIs. When the sensory values read outside of the
-    user-defined thresholds, the board will activate the motor control
-    function to pump either water or nutrient solution to bring the
-    concentration back within the thresholds. Meanwhile, another CC3200
-    board is frequently reading from the AWS cloud to present the current
-    TDS reading and user-defined threshold to the user on an OLED through
-    SPI protocols. To adjust the thresholds, the user can either do it
-    remotely or locally by using a TV remote to type the number into the IR
-    receiver. The adjustments will be updated to the AWS and if the user
-    updates remotely, the local CC3200 board will update the values in the
-    next synchronization.
-  </div>
-  <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
-    <div class="fig">
-      <img src="./media/Image_005.jpg" style="width:90%;height:auto;" />
-      <span class="caption">System Flowchart</span>
-    </div>
-  </div>
-</div>
-
 <h2 id="functional-specification">Functional Specification</h2>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
   <div style="display:inline-block;vertical-align:top;flex:1 0 300px;">
-    Our system works based on the following state diagram. The device will
-    periodically monitor the temperature and the electrical conductivity
-    (EC) of the solution and convert the values into a TDS value using a
-    calibration curve. At the same time, the device will check for threshold
-    inputs, both over the AWS shadow and via manual input on the IR
-    receiver. It will compare the TDS with the lower and upper thresholds
-    set by the user. If the value is within the thresholds, it will stay in
-    the rest state. If the TDS is higher than the upper thresholds, it will
-    go to the water state and activate the water pump until the PPM is lower
-    than the upper thresholds and go back to the rest state. If the PPM is
-    lower than the lower thresholds, it will go to the nutrient state and
-    activate the nutrient pump until the PPM is higher than the lower
-    thresholds and go back to the rest state. In each state, the device will
-    periodically post the TDS.
+The first state of our product, as seen in the State Diagram, is the monitoring or idle state, wherein the soil moisture sensor continually reads values while the IR receiver checks if the "LAST" button on the remote is pressed. Next, when the "LAST" button is pressed, the state changes to the watering state. In this state, the driver board sets the GPIO outputs to high for the motor to pump water. When the "MUTE" button is pressed, the system returns to the monitoring/idle state. If moisture levels are between 0.85 and 1.1, the motor turns on again, and water is pumped into the soil. Once the moisture levels drop below 0.85, the motor stops, and the system returns to the monitoring state.
+
   </div>
   <div style="display:inline-block;vertical-align:top;flex:0 0 500px">
     <div class="fig">
-      <img src="./media/Image_006.jpg" style="width:90%;height:auto;" />
+      <img src="./media/state.png" style="width:85%;height:auto;" />
       <span class="caption">State Diagram</span>
     </div>
   </div>
 </div>
 
+<h2 id="system-architecture">System Architecture</h2>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
+  <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
+In our design, the two CC3200s served as bases. One was a monitoring base, and the other was a display. The first launchpad had the soil moisture sensor, IR receiver, DC motor, and water pump attached to it. It also connected to AWS through Wi-Fi to send emails to the user. This board also contained the voltage divider for the soil moisture sensor. The second CC3200 was linked to the monitoring one through UART and displayed the humidity levels on its OLED screen via SPI.
+
+  </div>
+  <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
+    <div class="fig">
+      <img src="./media/block.png" style="width:90%;height:auto;" />
+      <span class="caption">Block Diagram</span>
+    </div>
+  </div>
+</div>
+
 <h1 id="implementation">Implementation</h1>
-<h3 id="cc3200-launchxl-evaluation-board">CC3200-LAUNCHXL Evaluation
-Board</h3>
-<p>All control and logic was handled by two CC3200 microcontroller
-units, one each for the Master and Slave device. On the master device,
-it was responsible for decoding IR inputs from the remote to allow the
-user to input thresholds to be sent over AWS. The board’s SPI
-functionality, using the TI SPI library, was used to interface with the
-OLED display. The MCU is WiFi enabled, allowing a remote connection
-between the two boards.</p>
-<p>On the slave device, the microcontroller was responsible for the same
-functionalities as above, in addition to the TDS reading and control.
-This includes interfacing with the ADC over the I2C bus, reading
-thresholds over HTTP from the AWS device shadow, writing the reported
-TDS to the device shadow, and activating the two pumps using the BJT
-control circuit.</p>
-<h2 id="functional-blocks-master">Functional Blocks: Master</h2>
-<h3 id="aws-iot-core">AWS IoT Core</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 200px'>
-    The AWS IoT core allows our devices to communicate with each other
-    asynchronously. The master device can update the desired thresholds, and
-    the slave device will read them and synchronize them to the reported
-    state. The slave device will also post the TDS and temperature readings
-    periodically.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_007.jpg" style="width:auto;height:2.5in" />
-      <span class="caption">Device Shadow JSON</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="oled-display">OLED Display</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    On both Master and Slave devices, the user can view the current TDS and
-    temperature of the plant solution on an OLED display. The user can also
-    use the display to view and edit the TDS thresholds. The CC3200 uses the
-    SPI bus to communicate with the display module.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_008.jpg" style="width:auto;height:2in" />
-      <span class="caption">OLED Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="ir-receiver">IR Receiver</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    On both the Master and Slave devices, a user can input the TDS
-    thresholds using a TV remote. These TV remotes use the NEC code format
-    with a carrier frequency of 38KHz. The Vishay IR receiver is connected
-    to Pin 62 of the CC3200, which is configured as a GPIO input pin. Each
-    positive edge of the signal triggers an interrupt in the main program,
-    storing the pulse distances into a buffer, and allowing us to decode the
-    inputs (1-9, delete and enter). The IR receiver is connected to VCC
-    through a resistor and a capacitor to filter any ripples.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:0 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_009.jpg" style="width:auto;height:2in" />
-      <span class="caption">IR Receiver Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h2 id="functional-blocks-slave">Functional Blocks: Slave</h2>
-<p>The slave device contains all the functional blocks from the master
-device, plus the following:</p>
-<h3 id="analog-to-digital-converter-adc-board">Analog-To-Digital
-Converter (ADC) Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    The outputs from the thermistor and TDS sensor board are
-    in the form of analog voltages, which need to be converted to digital
-    values to be usable in our program. We chose the AD1015 breakout board
-    from Adafruit, which sports 4-channels and 12 bits of precision. We
-    ended up using only 2 channels, so there is a potential for even more
-    cost savings. The ADC board supports I2C communication, which we can use
-    to request and read the two channel voltages. 
-    The <a href="https://cdn-shop.adafruit.com/datasheets/ads1015.pdf">
-    product datasheet</a> contains the necessary configuration values
-    and register addresses for operation.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_010.jpg" style="width:auto;height:2in" />
-      <span class="caption">ADC Wiring Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="thermistor">Thermistor</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 300px;'>
-    Conductivity-based TDS measurements are sensitive to temperature. To
-    allow accurate TDS measurements in a variety of climates and seasons,
-    temperature compensation calculations must be performed. To measure the
-    temperature, we use an NTC thermistor connected in a voltage divider
-    with a 10k resistor. The voltage across the resistor is read by the ADC
-    and converted to temperature using the equation provided by the
-    thermistor datasheet.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 400px'>
-    <div class="fig">
-      <img src="./media/Image_011.jpg" style="width:auto;height:2in" />
-      <span class="caption">Thermistor Circuit Diagram</span>
-    </div>
-  </div>
-</div>
-
-<h3 id="tds-sensor-board">TDS Sensor Board</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    In our first attempt to measure TDS, we used a simple two-probe analog
-    setup with a voltage divider. We soon found out that this was a naïve
-    approach (see Challenges). Consequently, we acquired a specialty TDS
-    sensing board from CQRobot, which generates a sinusoidal pulse and
-    measures the voltage drop to give a highly precise voltage to the ADC.
-    The MCU can then convert this voltage to a TDS value using the equation
-    provided by the device datasheet. We calibrated the TDS readings using a
-    standalone TDS sensor pen. After calibration and setting up the curves
-    for temperature compensation, we were able to achieve TDS readings
-    accurate to within 5% of the TDS sensor pen.
-  </div>
+<p>The first piece of hardware we implemented was the soil moisture
+sensor. This was plugged into a comparator which had Vin, GND, and A0.
+Vin was connected to VCC, and GND to GND. The A0 pin was wired to pin 60
+on our CC3200, which was configured as channel 3 of ADC input. Between
+the A0 pin and pin 60, we built a voltage divider circuit using two 3.3k
+Ohm resistors because the input voltage exceeded the maximum of 1.4V
+that the CC3200 is rated for. The output of the voltage divider circuit
+was fed into pin 60, completing the hardware setup for the soil moisture
+sensor. For software, we used ADC demo from the TI examples folder to
+help build the code for this component. ADC demo contains the code on
+how to set up the sensor and manipulate output to your desire. We read
+in raw ADC values, multiplied it by 1.4, and then divided that number by
+4096 to obtain the humidity level of the soil in voltages.</p>
+<p>The DC motor with the driver board was the next hardware component to
+be set up. The red and black wires of the motor were inserted into out1
+and out2 of the driver board (alternatively, you could use out3 and
+out4), and the driver board was powered by the 5V output from the
+CC3200. The enable, in1, and in2 were then connected to pins 5, 63, and
+64, respectively. These could be configured to any GPIO output pins
+using the SysConfig tool. In order for the motor to work, we used the
+PWM demo file from the TI examples folder and edited the code to remove
+irrelevant functions, retaining only one function that sets enable to
+high to turn the motor on and turns it off when enable is low. Setting
+up the water pump motor attached to the driver board is very simple. All
+you have to do is attach the tube that is included in the package to the
+motor, and that is it. The motor is obviously water proof, so you could
+drop it in a cup of water and it will push the water through the
+tube.</p>
+<p>The IR receiver was set up similarly to Lab 3. GND and VCC were
+connected to their respective pins, and the output was connected to pin
+50 on the CC3200 as GPIO input. The code for this was exactly the same
+as Lab 3, which included matching the binary values received from the IR
+sensor with the corresponding character being pressed on the AT&amp;T
+remote. This code also used SysTick and interrupts extensively to
+achieve this. To implement interrupts, you have to set up and register
+your interrupt handlers, then create a function called GPIOIntHandler()
+that uses binary shifting and interrupts to decode the incoming IR
+signals.</p>
+<p>The OLED board was connected using SPI to the launchpad, and
+corresponding pins were connected accordingly. MOSI, CLK, DC, CS, and
+RESET were the only pins we needed to connect (excluding VCC and GND).
+The code to set up the OLED board included setting up SPI Communication,
+as well as making sure the correct pins are assigned to the write and
+read commands in Adafruit_OLED.c. To enable UART communication across
+both CC3200 launchpads, we first set up UART communication using the
+code from previous labs on registering and enabling.connected the first
+CC3200’s RX to the second CC3200’s TX, and its TX to the second’s RX. We
+also connected a common ground between the two launchpads.</p>
+<p>The next step is to set up the CC3200 to connect AWS Servers. If you
+already haven't done so in lab 4, you need to create an Amazon AWS
+account to access the AWS IoT Console. Create a Thing, representing your
+physical device, and save the REST API endpoint address. Generate and
+download the required certificates: public key, private key, RootCA
+certificate, and any other certificates, and ensure they are activated.
+Set up a device shadow to represent the CC3200 in the cloud, and
+configure the necessary permissions. Create a new policy in Secure
+Policies and attach it to the certificate. Convert your private key and
+certificates from .pem to .der format using openSSL, and update your
+CC3200 to the latest service pack with UniFlash. Flash the .der
+certificates and private key to the board using UniFlash. Configure the
+SimpleLink socket library with the correct socket credentials and
+connect the board to the internet in common.h. Update the date and time
+variables in main.c to validate the credentials.</p>
+<p>To send an email, you need to essentially send it as a POST request.
+Please refer to the main.c in aws-rest-api-ssl-demo for the function on
+how to send a POST request called http_post(). This function initializes
+buffers for the request and server response, sets up headers and content
+length, and appends the actual data to be sent in the POST body. The
+constructed POST request is sent over the TLS socket using sl_Send(),
+with error handling for the send and receive operations. The function
+then prints the server's response to UART for debugging and returns 0
+upon successful execution.</p>
+<p>Please refer to our circuit schematic with all the components, wire
+connections, and pins in the schematic below.</p>
   <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
     <div class="fig">
-      <img src="./media/Image_012.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">TDS Sensor Wiring Diagram</span>
+      <img src="./media/schem.png" style="width:auto;height:auto;padding-top:30px" />
+      <span class="caption">Circuit Schematic</span>
     </div>
   </div>
-</div>
-
-<h3 id="pumps-and-control-circuit">Pumps and Control Circuit</h3>
-<div style="display:flex;flex-wrap:wrap;justify-content:space-between;">
-  <div style='display: inline-block; vertical-align: top;flex:1 0 500px'>
-    The CC3200 is unable to provide sufficient power to drive the pumps,
-    which need 100mA of current each. Therefore, we used an external power
-    source in the form of 2 AA batteries for each pump motor. To allow the
-    CC3200 to turn on/off the motors, we designed a simple amplifier using a
-    Common Emitter topology. When the control pin is asserted HIGH, the BJT
-    will allow current to flow from 3V to ground through the pump motor.
-    Conversely, if the control signal is LOW, the BJT will not allow current
-    to flow in the motor. For each motor, there is a reverse-biased diode
-    connected across it. This protects our circuit from current generated by
-    the motor if it is spun from external force or inertia.
-  </div>
-  <div style='display: inline-block; vertical-align: top;flex:1 0 600px'>
-    <div class="fig">
-      <img src="./media/Image_013.jpg" style="width:auto;height:2in;padding-top:30px" />
-      <span class="caption">Pump Circuit Diagrams</span>
-    </div>
-  </div>
-</div>
 
 <h1 id="challenges">Challenges</h1>
-<p>The most significant challenge we faced while developing this
-prototype was of inaccurate and inconsistent Electrical Conductivity
-(EC) measurements. This occurred due to two reasons: probe channel
-polarization and current limitations of GPIO pins.</p>
-<h2 id="probe-channel-polarization">Probe Channel Polarization</h2>
-<p>Our first design for the probe was simply two copper rods, which
-would add as electrodes. This probe would be connected in series with a
-1000-ohm resistor to act as a voltage divider. We would simply connect
-the probe to VCC and measure the voltage divider through the ADC,
-allowing us to calculate the EC. However, when we used the probe for a
-few minutes, we realized that the EC value would continue to rise. This
-is because the DC current causes an ionized channel to build up between
-the two electrodes in the water. This cause inconsistent EC readings as
-time goes on.</p>
-<h2 id="current-limitation-of-gpio-pins">Current Limitation of GPIO
-Pins</h2>
-<p>Our next idea was to try using the GPIO pins to power the probe,
-since we can turn it off when not needed, preventing excessive
-polarization. However, the GPIO pins are current limited, and any
-control circuit with a transistor would introduce extra voltage drops.
-Therefore, the simple two-probe implementation was not feasible.</p>
-<h2 id="solution-to-challenges">Solution to Challenges</h2>
-<p>We realized that using DC current to measure EC was not feasible.
-Therefore, we purchased a standalone EC measurement board from CQRobot.
-This inexpensive solution ($8) used a low-voltage, low-current AC signal
-to prevent polarization. The board would convert the AC voltage drop
-across the solution to a DC analog voltage, which would then be read by
-our ADC. After calibrating the setup using a commercial TDS pen, the
-results were accurate within 3%, and would not drift by more than 0.5%
-over time.</p>
+<p>The initial challenge we faced during our implementation was that the
+CC3200 was supplying too much input voltage to our soil moisture sensor,
+causing it to consistently read the maximum voltage of 1.4 V instead of
+the actual moisture level. To solve this problem, we constructed a
+voltage divider on our board to reduce the input voltage from the
+CC3200. By doing so, we were finally able to obtain accurate readings
+from our soil moisture sensor.</p>
+<p>Another challenge we encountered was our DC motor driver board
+inconsistently powering on and off. Debugging this issue was more
+complex, as it was a hardware-related problem. When we switched to a
+different driver board, it only worked as intended for a few minutes
+before reverting to the inconsistent behavior we had been
+troubleshooting earlier. We were able to narrow down the issue and
+discovered that when the water pump turned on, one of the input wires
+connected to the pump would become dislodged. When the wire disconnected
+even for half a second, it triggered an input/output error in our
+program, halting the entire process. To prevent the wire from loosening
+so often, we stripped it a bit more and fully tightened the screws on
+the driver board to hold it down. However, the initial startup of the
+water pump still caused the wire to move slightly. We finally resolved
+this issue by securing the wire so that it would not move at all when
+the pump powered on. After this, we no longer experienced any
+input/output errors or program stalls.</p>
+<p>The third obstacle we faced was an unresponsive IR receiver sensor.
+This issue took longer to resolve as we initially believed it was a
+software-related problem. However, after replacing the old IR receiver
+with a new one, it worked as expected.</p>
+<p>There were no other significant challenges or obstacles throughout
+the design and implementation process. The majority of the code we used
+from previous labs worked as expected, and there were no issues with
+connecting and communicating to AWS.</p>
 <h1 id="future-work">Future Work</h1>
-<p>Given more time, we had the idea of developing a web app to allow
-users to control the device from their cell phone. Another idea we
-wanted to implement in the future is adding a grow light and pH
-controller to maintain a more suitable and stable environment for
-different plants to grow.</p>
+<p>To further improve the design and user interface (UI) of our project,
+we would have liked to add a more interactive UI to our OLED by
+including more content, user control, and animations. This would include
+a welcome screen, a main menu to select between manual and automatic
+control, as well as a watering animation every time the plant is being
+watered. Currently, the OLED simply displays the live reading of the
+soil humidity level, so there is very little interaction between the
+user and our OLED display. Also during the demo, one of the lab members
+had to position the tube and water pump towards the plant since it was
+taller than where our boards were placed on the table. So we would also
+like to attach a frame for the tube and motor to rest on, eliminating
+the need for someone to hold the tube upright, thereby improving the
+overall efficiency of the system.</p>
 <h1 id="finalized-bom">Finalized BOM</h1>
-<!-- you can convert google sheet cells to html for free using a converter
-  like https://tabletomarkdown.com/convert-spreadsheet-to-html/ -->
-
-<table style="border-collapse:collapse;">
-<thead>
-  <tr>
-    <th><p>No.</p></th>
-    <th><p>PART NAME</p></th>
-    <th><p>DESCRIPTION</p></th>
-    <th><p>Qty</p></th>
-    <th><p>SUPPLIER / MANUFACTURER</p></th>
-    <th><p>UNIT COST</p></th>
-    <th><p>TOTAL PART COST</p></th>
-    <th><p>Purpose</p></th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td><p>1</p></td>
-    <td><p>CC3200-LAUNCHXL</p></td>
-    <td><p>MCU Evaluation Board</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$66.00</p></td>
-    <td><p>$132.00</p></td>
-    <td><p>Control Remote and Local Devices</p></td>
-  </tr>
-  <tr>
-    <td><p>2</p></td>
-    <td><p>Adafruit 1431 OLED</p></td>
-    <td><p>128x128 RGB OLED Display. SPI protocol</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$39.95</p></td>
-    <td><p>$79.90</p></td>
-    <td><p>Display PPM, Temperature, Thresholds, Inputs</p></td>
-  </tr>
-  <tr>
-    <td><p>3</p></td>
-    <td><p>Adafruit 4547 3VDC Pump</p></td>
-    <td><p>Submersible pump. 3V 100mA DC</p></td>
-    <td><p>2</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$2.95</p></td>
-    <td><p>$5.90</p></td>
-    <td><p>For dispensing water and nutrient solution</p></td>
-  </tr>
-  <tr>
-    <td><p>4</p></td>
-    <td><p>Adafruit 4545 6mm Tube</p></td>
-    <td><p>6mm Silicone Tube: 1 meter length</p></td>
-    <td><p>1</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$1.50</p></td>
-    <td><p>$1.50</p></td>
-    <td><p>For dispensing water and nutrient solution</p></td>
-  </tr>
-  <tr>
-    <td><p>5</p></td>
-    <td><p>NTC Thermistor 10k</p></td>
-    <td><p>10k ohm nominal resistance, 100cm lead</p></td>
-    <td><p>1</p></td>
-    <td><p>(Already had one, available on Aliexpress)</p></td>
-    <td><p>$0.92</p></td>
-    <td><p>$0.92</p></td>
-    <td><p>For temperature compensation</p></td>
-  </tr>
-  <tr>
-    <td><p>6</p></td>
-    <td><p>Adafruit AD1015 12-bit ADC</p></td>
-    <td><p>12-bit resolution, 4 channels, I2C</p></td>
-    <td><p>1</p></td>
-    <td><p>Adafruit</p></td>
-    <td><p>$9.95</p></td>
-    <td><p>$9.95</p></td>
-    <td><p>To convert Thermistor and TDS sensor reading to digital</p></td>
-  </tr>
-  <tr>
-    <td><p>7</p></td>
-    <td><p>PN2222A Transistor</p></td>
-    <td><p>NPN BJT (40V, 1000mA)</p></td>
-    <td><p>2</p></td>
-    <td><p>Digikey (onSemi)</p></td>
-    <td><p>$0.40</p></td>
-    <td><p>$0.80</p></td>
-    <td><p>For digital motor control</p></td>
-  </tr>
-  <tr>
-    <td><p>8</p></td>
-    <td><p>1N4001 Rectifier Diode</p></td>
-    <td><p>Diffused junction: 50V 1000mA</p></td>
-    <td><p>2</p></td>
-    <td><p>Digikey (Good-Ark Semi)</p></td>
-    <td><p>$0.16</p></td>
-    <td><p>$0.32</p></td>
-    <td><p>Reverse Current Protection</p></td>
-  </tr>
-  <tr>
-    <td><p>9</p></td>
-    <td><p>10k ohm resistor</p></td>
-    <td><p>10k ohm , 1% tolerance, 0.25W</p></td>
-    <td><p>1</p></td>
-    <td><p>Digikey (Stackpole Electronics)</p></td>
-    <td><p>$0.10</p></td>
-    <td><p>$0.10</p></td>
-    <td><p>Voltage divider for Thermistor</p></td>
-  </tr>
-  <tr>
-    <td><p>10</p></td>
-    <td><p>Vishay TSOP31130 IR RCVR</p></td>
-    <td><p>30kHz carrier frequency</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$1.41</p></td>
-    <td><p>$2.82</p></td>
-    <td><p>Decode user inputs</p></td>
-  </tr>
-  <tr>
-    <td><p>11</p></td>
-    <td><p>330 ohm resistor</p></td>
-    <td><p>330 ohm resistor, &lt;5% tolerance, 3W</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$0.59</p></td>
-    <td><p>$1.18</p></td>
-    <td><p>Current Limit for IR Receiv er</p></td>
-  </tr>
-  <tr>
-    <td><p>12</p></td>
-    <td><p>ATT-RC1534801 Remote</p></td>
-    <td><p>General-purpose TV remote. IR NTC protocol</p></td>
-    <td><p>1</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$9.99</p></td>
-    <td><p>$9.99</p></td>
-    <td><p>Allow user inputs</p></td>
-  </tr>
-  <tr>
-    <td><p>13</p></td>
-    <td><p>CQRSENTDS01 TDS Sensor</p></td>
-    <td><p>Analog reading 0-2.3V. 0-1000ppm range</p></td>
-    <td><p>1</p></td>
-    <td><p>CQRobot</p></td>
-    <td><p>$7.99</p></td>
-    <td><p>$7.99</p></td>
-    <td><p>Measure TDS of plant solution</p></td>
-  </tr>
-  <tr>
-    <td><p>14</p></td>
-    <td><p>10uF Capacitor</p></td>
-    <td><p>Electrolytic Cap 100V</p></td>
-    <td><p>2</p></td>
-    <td><p>Provided by EEC172 Course</p></td>
-    <td><p>$0.18</p></td>
-    <td><p>$0.36</p></td>
-    <td><p>DC Filtering for IR Receiv er</p></td>
-  </tr>
-  <tr>
-    <td><p>15</p></td>
-    <td><p><u>AA Battery (4ct</u>)</p></td>
-    <td><p>1.5 Volt, Non-rechargable</p></td>
-    <td><p>1</p></td>
-    <td><p>Already had, but</p>
-      <p>available on Amazon</p></td>
-    <td><p>$3.65</p></td>
-    <td><p>$3.65</p></td>
-    <td><p>Provide Power to Motors</p></td>
-  </tr>
-  <tr>
-    <td><p>16</p></td>
-    <td><p>Battery Holder</p></td>
-    <td><p>2xAA (3 Volts Total)</p></td>
-    <td><p>2</p></td>
-    <td><p>Amazon</p></td>
-    <td><p>$2.50</p></td>
-    <td><p>$4.99</p></td>
-    <td><p>Provide Power to Motors</p></td>
-  </tr>
-  <tr>
-    <td colspan="3">
-      <p>TOTAL PARTS</p></td>
-    <td><p>25</p></td>
-    <td colspan="2">
-      <p>TOTAL</p></td>
-    <td><p>$262.37</p></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td colspan="3">
-      <p>TOTAL PARTS (Excluding Provided)</p></td>
-    <td><p>14</p></td>
-    <td colspan="2">
-      <p>TOTAL (Exluding Provided)</p></td>
-    <td><p>$36.12</p></td>
-    <td></td>
-  </tr>
-</tbody>
-</table>
+<ol>
+    <li>
+        CC3200 Launchpad
+        <br>
+        Price: $66.00
+        <br>
+        Quantity: 2
+        <br>
+        Provided during lab (<a href="https://www.digikey.com/en/products/detail/texas-instruments/CC3200-LAUNCHXL/4862812?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&utm_id=go_cmp-20243063506_adg-_ad-__dev-c_ext-_prd-4862812_sig-CjwKCAjwr7ayBhAPEiwA6EIGxEtMye_Fat0JvejKsG5a4TxCuTJ-bT_BPEgVFcegrO3TbyRbO_UWARoCLNoQAvD_BwE&gad_source=4&gclid=CjwKCAjwr7ayBhAPEiwA6EIGxEtMye_Fat0JvejKsG5a4TxCuTJ-bT_BPEgVFcegrO3TbyRbO_UWARoCLNoQAvD_BwE">link</a>)
+    </li>
+    <br>
+    <li>
+        Adafruit OLED Display
+        <br>
+        Price: $38.95
+        <br>
+        Quantity: 1
+        <br>
+        Provided during lab (<a href="https://www.amazon.com/Adafruit-OLED-Breakout-Board-microSD/dp/B00XW2ME84">link</a>)
+    </li>
+    <br>
+    <li>
+        IR Receiver
+        <br>
+        Price: $1.95
+        <br>
+        Quantity: 1
+        <br>
+        Provided during lab (<a href="https://www.digikey.com/en/products/detail/adafruit-industries-llc/157/17039174?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=Pmax_Shopping_Product_Silicon%20Valley%20Category%20Awareness&utm_term=&utm_content=&utm_id=go_cmp-20773039395_adg-_ad-__dev-c_ext-_prd-17039174_sig-CjwKCAjwr7ayBhAPEiwA6EIGxF6ovFOFuNgT9b5q3V55zkqflwOIITkc-EusKrdMglU1R3i_zLNFYhoCT6YQAvD_BwE&gad_source=1&gclid=CjwKCAjwr7ayBhAPEiwA6EIGxF6ovFOFuNgT9b5q3V55zkqflwOIITkc-EusKrdMglU1R3i_zLNFYhoCT6YQAvD_BwE">link</a>)
+    </li>
+    <br>
+    <li>
+        Soil Moisture Sensor
+        <br>
+        Price: $7.89
+        <br>
+        Quantity: 1
+        <br>
+        Purchased from Amazon (<a href="https://www.amazon.com/HiLetgo-Moisture-Automatic-Watering-Arduino/dp/B01DKISKLO/ref=sr_1_4?crid=1MSFOJYEEZ88W&dib=eyJ2IjoiMSJ9.8bMNU5rD4f1KbFOcivM_v7trta6A883U71Gmd5HPFXMUHfDCpNBEqs96Y6NH0_f7rgauObgY9IqOKxLPsZK4ZAt-fHgHY2BvV7TNjS6VTIDU_mBjBz3OqQpWRrIPMJx63mO-Kdz_mKDwbBs72srllZNqFIrgyRwvmB-GNFxygp0rWQx2jdzYNxI-2XbQiFfUoBnr04tPIPMyIXk89Ivgm8sffD3x4aMEZFHMnKqd9_w.9-ORyYiM7HQB73K4q17hFoCVLgdpWTZrbiHyENucyY4&dib_tag=se&keywords=soil+humidity+sensor+i2c+ti+launchpad&qid=1716394630&sprefix=soil+humidity+sensor+i2c+ti+launchpad%2Caps%2C238&sr=8-4">link</a>)
+    </li>
+    <br>
+    <li>
+        Water Pump + Tube
+        <br>
+        Price: $9.99
+        <br>
+        Quantity: 1
+        <br>
+        Purchased from Amazon (<a href="https://www.amazon.com/Sipytoph-Submersible-Flexible-Aquariums-Hydroponics/dp/B097F4576N/ref=sr_1_5?crid=VGO5OH2LELUP&dib=eyJ2IjoiMSJ9.57MNaBmzvgLjLh8H7YYxaQgUc5vO7Ev_nXlYmn4WMGNCEjbJUUjvW9ZEdVK6YXKzS9bNKdmSi2C_g327DzUwUn0_MfMN5PH_MZ7zNqqxCXuwSLpTZpdnORICBcmpAIsPWt2UzZwGnmDCQULWoFYmLYnnBmEhnrR6rmH5U9cd9yHttFzC0_E6cWuLrwxg071XR9Q05OdkR7a_iVfcx67r7Ti3XMlsGKqqdHgBMBJ49547nl-hp53L5MxqTCaHOdQLAbUZqzyInJTVFMkif7Cqzl1oKgxIA-njc8iLU8q2Kgc.1BXTkb1B_hGHzC7-i5-Cy28G0yv7KZhTRNp9tUcSZ-0&dib_tag=se&keywords=arduino+water+pump&qid=1716340868&sprefix=arduino+water+pump%2Caps%2C219&sr=8-5">link</a>)
+    </li>
+    <br>
+    <li>
+        DC Motor Driver Board
+        <br>
+        Price: $9.99
+        <br>
+        Quantity: 1
+        <br>
+        Purchased from Amazon (<a href="https://www.amazon.com/dp/B0C5JCF5RS?psc=1&ref=ppx_yo2ov_dt_b_product_details">link</a>)
+    </li>
+    <br>
+    <li>
+        3.3k Ohm Resistor
+        <br>
+        Price: $5.99
+        <br>
+        Quantity: 2
+        <br>
+        Purchased from Amazon (<a href="https://www.amazon.com/EDGELEC-Resistor-Tolerance-Multiple-Resistance/dp/B07QK9TX9C/ref=sr_1_1_sspa?crid=QGHFEEY6YK16&dib=eyJ2IjoiMSJ9.Gg7jzKjWXaR_be4hkniUsFFZJyyCLGDy4wYAZgS9kb-wrJmt_q1wg1wV3xXlarkHrqxSLsQH47aGfd_5LdIVkLZ9SjpDbfFwf4Fp4HK9AUIpp58l_ExXpqIy8LmlfZdEZeSmwC8fuitPr0fIaNSiZyhaCjYlJJP-pS_pIyEhfu3PSDFACU73g4HBb13cc5mOxdIdTTQujLVHPsOxlgqsiU8YIPpBWRey6YSRCJUMaak.eCo2FTArlv7ZrToBtaXqKMIoLXA50H95jQ-Jud-fBJc&dib_tag=se&keywords=3.3k+ohm+resistor&qid=1717729757&sprefix=3.3k+%2Caps%2C161&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1">link</a>)
+    </li>
+</ol>
 </article>
 </html>
