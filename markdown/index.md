@@ -94,7 +94,7 @@ There were no other significant challenges or obstacles throughout the design an
 
 To further improve the design and user interface (UI) of our project, we would have liked to add a more interactive UI to our OLED by including more content, user control, and animations. This would include a welcome screen, a main menu to select between manual and automatic control, as well as a watering animation every time the plant is being watered. Currently, the OLED simply displays the live reading of the soil humidity level, so there is very little interaction between the user and our OLED display. Also during the demo, one of the lab members had to position the tube and water pump towards the plant since it was taller than where our boards were placed on the table. So we would also like to attach a frame for the tube and motor to rest on, eliminating the need for someone to hold the tube upright, thereby improving the overall efficiency of the system.
 
-# Finalized BOM
+# Bill of Materials
 
 <ol>
     <li>
