@@ -9,7 +9,7 @@ abstract: 'Our product, named the Plant Paramedic, is an automated plant irrigat
 
 <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px">
   <div style="display: inline-block; vertical-align: bottom;">
-    <img src="./media/IMG_5995.jpg" style="width:4in;height:5in;"/>
+    <img src="./media/plant.png" style="width:5in;height:6in;"/>
     <!-- <span class="caption"> </span> -->
   </div>
 </div>
