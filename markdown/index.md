@@ -1,7 +1,5 @@
 ---
 title: 'The Plant Paramedic: An Automated Watering System'
-author: '**Borna Niknahad and Pranav Nallapaneni** (website template by Ryan Tsang)'
-date: '*EEC172 SQ24*'
 
 toc-title: 'Table of Contents'
 abstract-title: '<h2>Description</h2>'
